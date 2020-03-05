@@ -12,20 +12,73 @@
       $(document).ready(function(){
         var $body = $('body');
         $body.html('');
+
+
+        // STYLES 
+      
+       
         $("body").prepend("<h1>TWIDDLER</h1>")
         $("<button>Get more tweets!</button>").appendTo("body");
         $('button').css("margin-bottom", "15px");
         $body.css("background-color", "black");
         $('body').css("color", "white");
         $('h1').css("color", "Aqua");
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
+        
+        $('body').css("line-height", "2.5");
+
+
+
+
+        // ADDING CONTENT/TWEETS
+
+          var index = streams.home.length - 1;
+         
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+
+          while(index >= 0){
+           var tweet = streams.home[index];
+          
+          var $username = $('<a></a>');
+          $username.text('@' + tweet.user);
+          $('div').append($username);
+
+          var $message = $('<p></p>');
+          $message.text(tweet.message + ' | ' + tweet.created_at);
+          $('div').append($message);
+
+          $('body').append($tweet);
           index -= 1;
-        }
+          }
+
+          //NEW TWEETS BUTTON
+
+        var tweetCount = streams.home.length
+        
+        $('button').click(function() {
+
+          var index = streams.home.length - 1
+          
+
+          while(index >= tweetCount){
+          var newTweets = streams.home[index];
+
+          var $message = $('<p></p>');
+          $message.text(newTweets.message + ' | ' + newTweets.created_at);
+          $('div').prepend($message);
+
+          var $username = $('<a></a>');
+          $username.text('@' + newTweets.user);
+          $('div').prepend($username);
+
+          tweetCount = streams.home.length
+          index -= 1;
+          }
+        });
+
+        $('a').css('color', 'aqua');
+        $('a').attr('href', 'https://facebook.com');
+        $('a').attr('target', '_blank');
+
 
       });
 

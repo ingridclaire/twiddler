@@ -58,6 +58,7 @@ button {
 	color: midnightblue;
 	cursor: pointer;
 	margin-bottom: 5px;
+	width: 20px;
 }
 
 .message {

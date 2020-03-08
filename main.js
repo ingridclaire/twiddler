@@ -1,9 +1,8 @@
-$(document).ready(() => {
-
+$(document).ready(function refresh() {
+    $('div.feed').html('');
     var $body = $('body');
-    var $divFeed = $('div.feed');
     var $button = $('button');
-    var tweetCount = streams.home.length
+    var $divFeed = $('div.feed');
     var index = streams.home.length - 1
 
     let createTweet = function() {
@@ -11,9 +10,12 @@ $(document).ready(() => {
         var $tweet = $('<div></div>');
         $tweet.addClass('tweet');
 
+        
         var $username = $('<p></p>');
         $username.addClass('username');
         $username.text('@' + tweet.user);
+
+
 
         var $message = $('<p></p>');
         $message.addClass('message');
@@ -22,7 +24,13 @@ $(document).ready(() => {
         $tweet.prepend($message);
         $tweet.prepend($username);
 
-        $divFeed.prepend($tweet);
+        $divFeed.append($tweet);
+
+        $('.username').on('mouseenter', event => {
+      	$(event.currentTarget).css('color', 'aqua')
+      }).on('mouseleave', event => {
+      	$(event.currentTarget).css('color', 'midnightblue');
+      });
     }
         
     while(index >= 0){
@@ -32,12 +40,7 @@ $(document).ready(() => {
     
 
     $button.click( () => {
-    	index = streams.home.length - 1;
-    	while(index >= tweetCount) {
-    	  createTweet();
-    	  tweetCount = streams.home.length;
-    	  index--;
-    	};
+    	refresh();
     });
 
     $button.on('mouseenter', () => {
@@ -74,11 +77,7 @@ $(document).ready(() => {
 
       // isClicked = true;
 
-      $('.username').on('mouseenter', event => {
-      	$(event.currentTarget).css('color', 'aqua')
-      }).on('mouseleave', event => {
-      	$(event.currentTarget).css('color', 'midnightblue');
-      });
+      
 
       });
 

@@ -4,8 +4,6 @@ $(document).ready(() => {
     var $divFeed = $('div.feed');
     var $button = $('button');
     var tweetCount = streams.home.length
-    
-
     var index = streams.home.length - 1
 
     let createTweet = function() {
@@ -42,29 +40,48 @@ $(document).ready(() => {
     	};
     });
 
+    $button.on('mouseenter', () => {
+      	$button.css({
+      		padding: '15px',
+      		fontSize: '18px'})
+      }).on('mouseleave', () => {
+      	$button.css({
+      		padding: '10px',
+      		fontSize: '14px'});
+      });
+
     
-    var isClicked = false;
+    // var isClicked = false;
 
     $('.username').click( event => {
-      if(!isClicked) {
         let handle = $(event.currentTarget).text();
         let person = handle.slice(1, handle.length);
         let userTimeline = streams.users[person];
+        let userTweetCount = 0
+
+        var $showTimeline = $('<p></p>')
+         $showTimeline.addClass(person);
+
       
-        for(var i = userTimeline.length - 2; i > -1; i--) {
+        for(var i = userTimeline.length - 1; i > userTweetCount ; i--) {
           var $nextTweet = $('<p></p>')
           $nextTweet.text(userTimeline[i].message + ' | ' + userTimeline[i].created_at);
-          $(event.currentTarget).next().append($nextTweet);
+          $showTimeline.append($nextTweet)
+          userTweetCount = userTimeline.length;
         }
-      } else {
-      	$nextTweet.hide();
-      }
+        $(event.currentTarget).next().prepend($showTimeline);
+      });
 
       // isClicked = true;
 
+      $('.username').on('mouseenter', event => {
+      	$(event.currentTarget).css('color', 'aqua')
+      }).on('mouseleave', event => {
+      	$(event.currentTarget).css('color', 'midnightblue');
       });
 
-  
-    })
+      });
+
+ 
 
     

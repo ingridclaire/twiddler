@@ -1,0 +1,71 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: 'Trebuchet MS', 'san-serif';
+	margin: 0; }
+
+.header {
+	background-color: aqua;
+	color: black; 
+	margin-top: 0;
+	height: 45px;
+	width: 100%;
+	margin-bottom: 0;
+	padding-left: 10px;
+	position: fixed; }
+
+.tagline {
+    padding-left: 40px;
+    padding-bottom: 5px;
+    padding-top: 0;
+    font-weight: normal;
+    font-size: 18px;
+    background-color: aqua;
+    color: gray;
+    width: 100%;
+    margin-top: 45px;
+    position: fixed;
+}
+
+button {
+	background-color: orange;
+	color: black;
+	font-weight: bold;
+	font-family: 'Trebuchet MS', 'sans-serif';
+	font-size: 14px;
+	padding: 10px;
+	margin-left: 15px;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-top: 90px;
+}
+
+.feed {
+	margin-top: 15px;
+	line-height: 2;
+	width: auto;
+}
+
+.tweet {
+	background-color: gray;
+	margin: 8px;
+	padding-left: 10px;
+	border-radius: 8px;
+	width: 900px;
+}
+
+.username {
+	color: midnightblue;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.message {
+	margin-top: 0;
+}
+
+.userTimeline {
+	color: white;
+}
+
+

@@ -25,8 +25,6 @@ $(document).ready(function refresh() {
         var $fullTimeline = $('<p></p>');
         $fullTimeline.addClass('fullTimeline');
         
-
-        // $tweet.prepend($message);
         $tweet.prepend($username);
         $tweet.append($message);
         $tweet.append($fullTimeline);
@@ -61,10 +59,7 @@ $(document).ready(function refresh() {
       		padding: '10px',
       		fontSize: '14px'});
       });
-// :first.child
-// :nth-child(n)
-    
-    // var isClicked = false;
+
 
     $('div.tweet').click( event => {
     	$(event.currentTarget.children[1]).toggle()
@@ -85,26 +80,12 @@ $(document).ready(function refresh() {
         $(event.currentTarget.children[2]).slideToggle();
         
 
-        // var $showTimeline = $('<p></p>')
-        //  $showTimeline.addClass(person);
-
-      
-        // for(var i = userTimeline.length - 1; i > userTweetCount ; i--) {
-        //   var $nextTweet = $('<p></p>')
-        //   $nextTweet.text(userTimeline[i].message + ' | ' + userTimeline[i].created_at);
-        //   $showTimeline.append($nextTweet)
-        //   userTweetCount = userTimeline.length;
-        // }
-        // $(event.currentTarget).next().prepend($showTimeline);
       });
 
-      // isClicked = true;
       $fullTimeline.mouseleave( event => {
         	$(event.currentTarget.prev()).show();
         	$(event.currentTarget).hide();
         })
-
-      
 
       });
 

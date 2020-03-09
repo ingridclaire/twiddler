@@ -5,6 +5,7 @@ $(document).ready(function refresh() {
     var $divFeed = $('div.feed');
     var index = streams.home.length - 1
 
+
     let createTweet = function() {
         var tweet = streams.home[index];
         var $tweet = $('<div></div>');
@@ -21,8 +22,16 @@ $(document).ready(function refresh() {
         $message.addClass('message');
         $message.text(tweet.message + ' | ' + tweet.created_at);
 
-        $tweet.prepend($message);
+        var $fullTimeline = $('<p></p>');
+        $fullTimeline.addClass('fullTimeline');
+        
+
+        // $tweet.prepend($message);
         $tweet.prepend($username);
+        $tweet.append($message);
+        $tweet.append($fullTimeline);
+
+        $fullTimeline.hide();
 
         $divFeed.append($tweet);
 
@@ -52,30 +61,48 @@ $(document).ready(function refresh() {
       		padding: '10px',
       		fontSize: '14px'});
       });
-
+// :first.child
+// :nth-child(n)
     
     // var isClicked = false;
 
-    $('.username').click( event => {
-        let handle = $(event.currentTarget).text();
+    $('div.tweet').click( event => {
+    	$(event.currentTarget.children[1]).toggle()
+        $(event.currentTarget.children[2]).html('');
+        let handle = $(event.currentTarget.children[0]).text();
         let person = handle.slice(1, handle.length);
         let userTimeline = streams.users[person];
-        let userTweetCount = 0
+        let userIndex = userTimeline.length - 1;
 
-        var $showTimeline = $('<p></p>')
-         $showTimeline.addClass(person);
+        while(userIndex >= 0) {
+          let currentTweet = userTimeline[userIndex];
+          let $currentTweet = $('<p></p>');
+          $currentTweet.text(currentTweet.message + ' | ' + currentTweet.created_at);
+          $(event.currentTarget.children[2]).append($currentTweet);
+          
+          userIndex--;
+        }
+        $(event.currentTarget.children[2]).slideToggle();
+        
+
+        // var $showTimeline = $('<p></p>')
+        //  $showTimeline.addClass(person);
 
       
-        for(var i = userTimeline.length - 1; i > userTweetCount ; i--) {
-          var $nextTweet = $('<p></p>')
-          $nextTweet.text(userTimeline[i].message + ' | ' + userTimeline[i].created_at);
-          $showTimeline.append($nextTweet)
-          userTweetCount = userTimeline.length;
-        }
-        $(event.currentTarget).next().prepend($showTimeline);
+        // for(var i = userTimeline.length - 1; i > userTweetCount ; i--) {
+        //   var $nextTweet = $('<p></p>')
+        //   $nextTweet.text(userTimeline[i].message + ' | ' + userTimeline[i].created_at);
+        //   $showTimeline.append($nextTweet)
+        //   userTweetCount = userTimeline.length;
+        // }
+        // $(event.currentTarget).next().prepend($showTimeline);
       });
 
       // isClicked = true;
+      $fullTimeline.mouseleave( event => {
+        	$(event.currentTarget.prev()).show();
+        	$(event.currentTarget).hide();
+        })
 
       
 
